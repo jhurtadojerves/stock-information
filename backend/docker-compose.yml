@@ -1,0 +1,38 @@
+services:
+  cockroachdb:
+    image: cockroachdb/cockroach:v23.1.11
+    command: start-single-node --insecure
+    ports:
+      - "26257:26257"
+      - "8081:8080"
+    volumes:
+      - cockroach-data:/cockroach/cockroach-data
+    healthcheck:
+      test: ["CMD-SHELL", "cockroach sql --insecure --execute='SELECT 1'"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      cockroachdb:
+        condition: service_healthy
+    ports:
+      - "8080:8080"
+    volumes:
+      - .:/app
+      - ./tmp:/app/tmp
+    environment:
+      - DB_HOST=cockroachdb
+      - DB_PORT=26257
+      - DB_NAME=stockdb
+      - DB_USER=root
+      - DB_SSL=disable
+      - STOCK_API_TOKEN=${STOCK_API_TOKEN}
+      - SYNC_CRON_EXPRESSION=*/1 * * * *
+
+volumes:
+  cockroach-data:

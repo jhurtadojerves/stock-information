@@ -1,0 +1,49 @@
+
+# Go binary
+/bin/
+/tmp/
+/out/
+*/tmp/
+
+# Compiled binary
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Go workspace file
+go.work
+go.work.sum
+
+# Dependency directories
+/vendor/
+
+# Go-specific files and directories
+*.test
+*.out
+
+# Log files
+*.log
+
+# IDE files
+.idea/
+.vscode/
+.DS_Store
+
+# Docker files
+docker-compose.override.yml
+Dockerfile*
+.dockerignore
+
+# Env files (contienen variables sensibles)
+.env
+
+# Coverage output
+*.coverage
+
+# Go modules
+go.sum
+
+coverage.html
+
