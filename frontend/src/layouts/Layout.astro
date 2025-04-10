@@ -1,0 +1,34 @@
+---
+import '../styles/global.css'
+---
+
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stock Insight</title>
+  </head>
+  <body class="bg-gray-50 text-gray-900 min-h-screen flex flex-col">
+    <!-- Header -->
+    <header class="bg-white shadow">
+      <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+        <h1 class="text-xl font-bold text-blue-700">📈 Stock Insight</h1>
+        <nav>
+          <a href="/" class="text-sm text-gray-700 hover:underline">Inicio</a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Main content -->
+    <main class="flex-1 container mx-auto px-4 py-6">
+      <slot>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t mt-10">
+      <div class="container mx-auto px-4 py-4 text-sm text-gray-500 text-center">
+        &copy; {new Date().getFullYear()} Stock Insight. Todos los derechos reservados.
+      </div>
+    </footer>
+  </body>
+</html>
