@@ -43,4 +43,3 @@ test:
 
 coverage: test
 	go tool cover -html=$(COVERAGE_FILE) -o $(COVERAGE_REPORT)
-

@@ -6,7 +6,9 @@ import (
 	"stock-information/internal/adapters/repository"
 	"stock-information/internal/controllers"
 	"stock-information/internal/services"
+	"time"
 
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
 )
@@ -21,6 +23,14 @@ func main() {
 	scheduler.Start()
 
 	r := gin.Default()
+	r.Use(cors.New(cors.Config{
+		AllowOrigins:     []string{"http://localhost:4321"},
+		AllowMethods:     []string{"GET", "POST", "OPTIONS"},
+		AllowHeaders:     []string{"Origin", "Content-Type"},
+		ExposeHeaders:    []string{"Content-Length"},
+		AllowCredentials: true,
+		MaxAge:           12 * time.Hour,
+	}))
 	v1 := r.Group("/api/v1")
 	stocks := v1.Group("/stocks")
 	{
