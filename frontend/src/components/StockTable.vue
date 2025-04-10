@@ -8,7 +8,7 @@
           class="border px-3 py-2 rounded w-full max-w-sm"
         />
         <button @click="fetchStockRecommendation" class="ml-4 bg-blue-600 text-white px-4 py-2 rounded">
-          Recomendar
+          Recomiéndame
         </button>
       </div>
   
@@ -16,9 +16,9 @@
   
       <div v-else>
         <table class="min-w-full border divide-y divide-gray-200">
-          <thead>
-            <tr>
-                <th @click="toggleSort" class="cursor-pointer px-4 py-2 select-none flex items-center space-x-1">
+            <thead>
+                <tr>
+                    <th @click="toggleSort" class="cursor-pointer px-4 py-2 select-none flex items-center space-x-1">
                     <span>Ticker</span>
                     <svg
                         v-if="sort === 'asc'"
@@ -41,18 +41,32 @@
                         <path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round" />
                     </svg>
                     </th>
-              <th class="px-4 py-2">Compañía</th>
-            </tr>
-          </thead>
+                    <th class="px-4 py-2">Compañía</th>
+                    <th class="px-4 py-2">Broker</th>
+                    <th class="px-4 py-2">Precio Antes</th>
+                    <th class="px-4 py-2">Precio Después</th>
+                </tr>
+                </thead>
           <tbody>
             <tr
-              v-for="stock in stocks"
-              :key="stock.ticker"
-              class="hover:bg-gray-100 cursor-pointer"
-              @click="goToDetail(stock.ticker)"
+            v-for="stock in stocks"
+            :key="stock.ticker"
+            class="hover:bg-gray-100 cursor-pointer"
+            @click="goToDetail(stock.ticker)"
             >
-              <td class="px-4 py-2 font-mono">{{ stock.ticker }}</td>
-              <td class="px-4 py-2">{{ stock.company }}</td>
+                <td class="px-4 py-2 font-mono">{{ stock.ticker }}</td>
+                <td class="px-4 py-2">{{ stock.company }}</td>
+                <td class="px-4 py-2">{{ stock.brokerage }}</td>
+                <td class="px-4 py-2 text-right">${{ stock.target_from }}</td>
+                <td
+                class="px-4 py-2 text-right"
+                :class="{
+                    'text-green-600 font-semibold': stock.target_to > stock.target_from,
+                    'text-red-600 font-semibold': stock.target_to < stock.target_from
+                }"
+                >
+                ${{ stock.target_to }}
+                </td>
             </tr>
           </tbody>
         </table>
