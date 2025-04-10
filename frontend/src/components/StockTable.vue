@@ -18,7 +18,29 @@
         <table class="min-w-full border divide-y divide-gray-200">
           <thead>
             <tr>
-              <th @click="toggleSort" class="cursor-pointer px-4 py-2">Ticker</th>
+                <th @click="toggleSort" class="cursor-pointer px-4 py-2 select-none flex items-center space-x-1">
+                    <span>Ticker</span>
+                    <svg
+                        v-if="sort === 'asc'"
+                        class="w-4 h-4 text-gray-500"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        viewBox="0 0 24 24"
+                    >
+                        <path d="M5 15l7-7 7 7" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                    <svg
+                        v-else
+                        class="w-4 h-4 text-gray-500"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        viewBox="0 0 24 24"
+                    >
+                        <path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                    </th>
               <th class="px-4 py-2">Compañía</th>
             </tr>
           </thead>
