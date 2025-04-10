@@ -32,7 +32,7 @@ services:
       - DB_USER=root
       - DB_SSL=disable
       - STOCK_API_TOKEN=${STOCK_API_TOKEN}
-      - SYNC_CRON_EXPRESSION=*/1 * * * *
+      - SYNC_CRON_EXPRESSION=0 * * * *
 
 volumes:
   cockroach-data:
